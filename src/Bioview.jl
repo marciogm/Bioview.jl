@@ -1,5 +1,4 @@
 module Bioview
-using IJulia
 
 include("MSA.jl")
 

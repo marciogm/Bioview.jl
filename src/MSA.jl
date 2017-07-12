@@ -1,3 +1,5 @@
+using JSON
+
 export MSA, ColorScheme, Conf, Columns, Vis, Zoomer, plot
 
 struct MSA
