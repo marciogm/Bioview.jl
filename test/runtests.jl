@@ -1,5 +1,15 @@
 using Bioview
 using Base.Test
 
-# write your own tests here
-@test 1 == 2
+TESTS = [
+    "MSA.jl"
+]
+
+function main()
+    root = dirname(@__FILE__)
+    for test in TESTS
+        include(test)
+    end
+end
+
+main()
