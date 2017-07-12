@@ -25,7 +25,6 @@
         msa = MSA(seqs, ColorScheme(scheme="taylor"), Zoomer(aling = "auto"))
         @test typeof(msa) == MSA
 
-        # TODO: Create a custom error
-        @test_throws String MSA(seqs, Dict("color" => "taylor"))
+        @test_throws BioviewError MSA(seqs, Dict("color" => "taylor"))
     end
 end

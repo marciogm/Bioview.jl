@@ -15,8 +15,9 @@ end
 
 function isavalidtype(t::DataType)
     if !issubtype(t, Options)
-        throw("$(t): It's not a valid Option")
+        throw(BioviewError("$(t): It's not a valid Option"))
     end
+    return true
 end
 
 function isavalidtype(options::Tuple)
