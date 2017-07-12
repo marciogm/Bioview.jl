@@ -19,7 +19,7 @@ struct MSA
     end
 end
 
-struct Columns
+struct Columns <: Options
     fields::Dict{AbstractString, Any}
     function Columns(;kwargs...)
         opts = merge_options!("columns", kwargs)
@@ -27,7 +27,7 @@ struct Columns
     end
 end
 
-struct ColorScheme
+struct ColorScheme <: Options
     fields::Dict{AbstractString, Any}
     function ColorScheme(;kwargs...)
         opts = merge_options!("colorscheme", kwargs)
@@ -35,7 +35,7 @@ struct ColorScheme
     end
 end
 
-struct Conf
+struct Conf <: Options
     fields::Dict{AbstractString, Any}
     function Conf(;kwargs...)
         opts = merge_options!("conf", kwargs)
@@ -43,7 +43,7 @@ struct Conf
     end
 end
 
-struct Vis
+struct Vis <: Options
     fields::Dict{AbstractString, Any}
     function Vis(;kwargs...)
         opts = merge_options!("vis", kwargs)
@@ -51,7 +51,7 @@ struct Vis
     end
 end
 
-struct Zoomer
+struct Zoomer <: Options
     fields::Dict{AbstractString, Any}
     function Zoomer(;kwargs...)
         opts = merge_options!("zoomer", kwargs)
@@ -92,33 +92,4 @@ function plot_msa(msa::MSA)
     </div>
     """
     display("text/html", txt_html)
-end
-
-function merge_options!(name::String, opts::Array{Any,1})
-    values = Dict{String, Any}()
-    [merge!(values, Dict(string(x[1]) => x[2])) for x in opts]
-    ret = Dict(name => values)
-    return ret
-end
-
-function merge_options!(opts::Tuple)
-    values = Dict{String, Any}()
-    [merge!(values, x.fields) for x in opts]
-    return values
-end
-
-const valid_types = [ColorScheme, Conf, Columns, Vis, Zoomer]
-
-function isavalidtype(t::DataType)
-    if !in(t, valid_types)
-        throw("$(t): It's not a valid Option")
-    end
-end
-
-function isavalidtype(options::Tuple)
-    opts = map(x -> typeof(x), options)
-    for t in opts
-        isavalidtype(t)
-    end
-    return true
 end
