@@ -2,7 +2,7 @@ using Bioview
 using Base.Test
 
 TESTS = [
-    "errors.jl",  "MSA.jl"
+    "errors.jl", "options.jl", "MSA.jl"
 ]
 
 function main()

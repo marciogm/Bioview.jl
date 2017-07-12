@@ -1,3 +1,5 @@
+export Options
+
 abstract type Options end
 
 function merge_options!(name::String, opts::Array{Any,1})
@@ -7,7 +9,7 @@ function merge_options!(name::String, opts::Array{Any,1})
     return ret
 end
 
-function merge_options!(opts::Tuple)
+function merge_options!(opts::Tuple{Options, Options})
     values = Dict{String, Any}()
     [merge!(values, x.fields) for x in opts]
     return values
