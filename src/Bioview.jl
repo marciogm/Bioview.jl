@@ -3,6 +3,7 @@ module Bioview
 include("errors.jl")
 include("options.jl")
 include("MSA.jl")
+include("Ngl.jl")
 
 isijulia() = isdefined(Main, :IJulia) && Main.IJulia.inited
 
